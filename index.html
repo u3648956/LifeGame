@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>卡牌图鉴</title>
+    <title>Life Gmae Card</title>
     <style>
         * {
             margin: 0;
@@ -38,7 +38,6 @@
         }
         .tab-bar::-webkit-scrollbar {display: none;}
 
-        /* 分组标签按钮 */
         .tab {
             padding: 12px 20px;
             background: #fff;
@@ -54,7 +53,6 @@
             color: #fff;
         }
 
-        /* 卡牌组容器（默认隐藏，切换显示） */
         .card-group {
             display: none;
             max-width: 340px;
@@ -66,7 +64,6 @@
             display: flex;
         }
 
-        /* 卡牌样式（保留你完美的原版效果） */
         .card {
             width: 100%;
             border-radius: 20px;
@@ -82,7 +79,6 @@
             display: block;
         }
 
-        /* 全屏弹窗（原版不变） */
         .modal {
             display: none;
             position: fixed;
@@ -119,16 +115,16 @@
 </head>
 
 <body>
-    <h1 class="title">卡牌图鉴</h1>
+    <h1 class="title">Cards</h1>
 
     <!-- 6个分组标签 -->
     <div class="tab-bar">
-        <div class="tab active" onclick="switchTab(1)">卡组 1</div>
-        <div class="tab" onclick="switchTab(2)">卡组 2</div>
-        <div class="tab" onclick="switchTab(3)">卡组 3</div>
-        <div class="tab" onclick="switchTab(4)">卡组 4</div>
-        <div class="tab" onclick="switchTab(5)">卡组 5</div>
-        <div class="tab" onclick="switchTab(6)">卡组 6</div>
+        <div class="tab active" onclick="switchTab(1)">情境 1</div>
+        <div class="tab" onclick="switchTab(2)">情境 2</div>
+        <div class="tab" onclick="switchTab(3)">情境 3</div>
+        <div class="tab" onclick="switchTab(4)">情境 4</div>
+        <div class="tab" onclick="switchTab(5)">情境 5</div>
+        <div class="tab" onclick="switchTab(6)">情境 6</div>
     </div>
 
     <!-- ====================== 分组1（默认显示） ====================== -->
