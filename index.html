@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- 手机极致优化 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>卡牌钱包</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f2f2f7;
+            padding: 20px 15px 120px;
+            /* 苹果风格背景 */
+        }
+
+        .title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #1c1c1e;
+        }
+
+        /* ———— 核心：iPhone 钱包 堆叠卡片效果 ———— */
+        .card-stack {
+            position: relative;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        /* 卡牌样式：圆角+阴影+堆叠 */
+        .card {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            cursor: pointer;
+            position: relative;
+            margin-bottom: -180px; /* 堆叠核心代码 */
+            transition: transform 0.2s;
+        }
+
+        /* 鼠标/手指按下效果 */
+        .card:active {
+            transform: scale(0.98);
+        }
+
+        /* 最后一张卡牌完全显示 */
+        .card:last-child {
+            margin-bottom: 0;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ———— 全屏预览弹窗 ———— */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            touch-action: pinch-zoom; /* 双指缩放 */
+        }
+
+        /* 超大关闭按钮（手机超好点） */
+        .close {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            font-size: 40px;
+            text-align: center;
+            line-height: 60px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="title">我的卡牌</h1>
+
+    <!-- ———— 堆叠卡牌区域（直接在这里加卡牌） ———— -->
+    <div class="card-stack">
+        <div class="card" onclick="showCard('images/1.png')">
+            <img src="images/card1.jpg">
+        </div>
+        <div class="card" onclick="showCard('images/2.png')">
+            <img src="images/card2.jpg">
+        </div>
+        <div class="card" onclick="showCard('images/3.png')">
+            <img src="images/card3.jpg">
+        </div>
+        <div class="card" onclick="showCard('images/4.png')">
+            <img src="images/card4.jpg">
+        </div>
+    </div>
+
+    <!-- 全屏查看 -->
+    <div class="modal" id="cardModal">
+        <div class="close" onclick="closeCard()">×</div>
+        <img id="showImg">
+    </div>
+
+    <script>
+        // 点击卡牌全屏查看
+        function showCard(url) {
+            document.getElementById('showImg').src = url;
+            document.getElementById('cardModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 关闭
+        function closeCard() {
+            document.getElementById('cardModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // 点击空白处关闭
+        document.getElementById('cardModal').onclick = function(e) {
+            if(e.target === this) closeCard();
+        }
+    </script>
+</body>
+</html>
