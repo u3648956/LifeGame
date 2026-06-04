@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>卡牌图鉴</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f2f2f7;
+            padding: 20px 10px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0 20px;
+            color: #1c1c1e;
+        }
+
+        /* 分组标签栏（手机横向滑动） */
+        .tab-bar {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 10px 5px;
+            margin-bottom: 20px;
+            scrollbar-width: none;
+        }
+        .tab-bar::-webkit-scrollbar {display: none;}
+
+        /* 分组标签按钮 */
+        .tab {
+            padding: 12px 20px;
+            background: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .tab.active {
+            background: #007AFF;
+            color: #fff;
+        }
+
+        /* 卡牌组容器（默认隐藏，切换显示） */
+        .card-group {
+            display: none;
+            max-width: 340px;
+            margin: 0 auto;
+            gap: 15px;
+            flex-direction: column;
+        }
+        .card-group.active {
+            display: flex;
+        }
+
+        /* 卡牌样式（保留你完美的原版效果） */
+        .card {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .card:active {transform: scale(0.97);}
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            display: block;
+        }
+
+        /* 全屏弹窗（原版不变） */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            touch-action: pinch-zoom;
+        }
+        .close {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            font-size: 40px;
+            text-align: center;
+            line-height: 60px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="title">卡牌图鉴</h1>
+
+    <!-- 6个分组标签 -->
+    <div class="tab-bar">
+        <div class="tab active" onclick="switchTab(1)">卡组 1</div>
+        <div class="tab" onclick="switchTab(2)">卡组 2</div>
+        <div class="tab" onclick="switchTab(3)">卡组 3</div>
+        <div class="tab" onclick="switchTab(4)">卡组 4</div>
+        <div class="tab" onclick="switchTab(5)">卡组 5</div>
+        <div class="tab" onclick="switchTab(6)">卡组 6</div>
+    </div>
+
+    <!-- ====================== 分组1（默认显示） ====================== -->
+    <div class="card-group active" id="group1">
+        <div class="card" onclick="showCard('images/1.png')"><img src="images/1.png"></div>
+        <div class="card" onclick="showCard('images/2.png')"><img src="images/2.png"></div>
+        <div class="card" onclick="showCard('images/3.png')"><img src="images/3.png"></div>
+        <div class="card" onclick="showCard('images/4.png')"><img src="images/4.png"></div>
+        <div class="card" onclick="showCard('images/group1_05.jpg')"><img src="images/group1_05.jpg"></div>
+        <div class="card" onclick="showCard('images/group1_06.jpg')"><img src="images/group1_06.jpg"></div>
+        <div class="card" onclick="showCard('images/group1_07.jpg')"><img src="images/group1_07.jpg"></div>
+        <div class="card" onclick="showCard('images/group1_08.jpg')"><img src="images/group1_08.jpg"></div>
+    </div>
+
+    <!-- ====================== 分组2 ====================== -->
+    <div class="card-group" id="group2">
+        <div class="card" onclick="showCard('images/group2_01.jpg')"><img src="images/group2_01.jpg"></div>
+        <div class="card" onclick="showCard('images/group2_02.jpg')"><img src="images/group2_02.jpg"></div>
+        <div class="card" onclick="showCard('images/group2_03.jpg')"><img src="images/group2_03.jpg"></div>
+        <div class="card" onclick="showCard('images/group2_04.jpg')"><img src="images/group2_04.jpg"></div>
+        <div class="card" onclick="showCard('images/group2_05.jpg')"><img src="images/group2_05.jpg"></div>
+        <div class="card" onclick="showCard('images/group2_06.jpg')"><img src="images/group2_06.jpg"></div>
+        <div class="card" onclick="showCard('images/group2_07.jpg')"><img src="images/group2_07.jpg"></div>
+        <div class="card" onclick="showCard('images/group2_08.jpg')"><img src="images/group2_08.jpg"></div>
+    </div>
+
+    <!-- ====================== 分组3 ====================== -->
+    <div class="card-group" id="group3">
+        <div class="card" onclick="showCard('images/group3_01.jpg')"><img src="images/group3_01.jpg"></div>
+        <div class="card" onclick="showCard('images/group3_02.jpg')"><img src="images/group3_02.jpg"></div>
+        <div class="card" onclick="showCard('images/group3_03.jpg')"><img src="images/group3_03.jpg"></div>
+        <div class="card" onclick="showCard('images/group3_04.jpg')"><img src="images/group3_04.jpg"></div>
+        <div class="card" onclick="showCard('images/group3_05.jpg')"><img src="images/group3_05.jpg"></div>
+        <div class="card" onclick="showCard('images/group3_06.jpg')"><img src="images/group3_06.jpg"></div>
+        <div class="card" onclick="showCard('images/group3_07.jpg')"><img src="images/group3_07.jpg"></div>
+        <div class="card" onclick="showCard('images/group3_08.jpg')"><img src="images/group3_08.jpg"></div>
+    </div>
+
+    <!-- ====================== 分组4 ====================== -->
+    <div class="card-group" id="group4">
+        <div class="card" onclick="showCard('images/group4_01.jpg')"><img src="images/group4_01.jpg"></div>
+        <div class="card" onclick="showCard('images/group4_02.jpg')"><img src="images/group4_02.jpg"></div>
+        <div class="card" onclick="showCard('images/group4_03.jpg')"><img src="images/group4_03.jpg"></div>
+        <div class="card" onclick="showCard('images/group4_04.jpg')"><img src="images/group4_04.jpg"></div>
+        <div class="card" onclick="showCard('images/group4_05.jpg')"><img src="images/group4_05.jpg"></div>
+        <div class="card" onclick="showCard('images/group4_06.jpg')"><img src="images/group4_06.jpg"></div>
+        <div class="card" onclick="showCard('images/group4_07.jpg')"><img src="images/group4_07.jpg"></div>
+        <div class="card" onclick="showCard('images/group4_08.jpg')"><img src="images/group4_08.jpg"></div>
+    </div>
+
+    <!-- ====================== 分组5 ====================== -->
+    <div class="card-group" id="group5">
+        <div class="card" onclick="showCard('images/group5_01.jpg')"><img src="images/group5_01.jpg"></div>
+        <div class="card" onclick="showCard('images/group5_02.jpg')"><img src="images/group5_02.jpg"></div>
+        <div class="card" onclick="showCard('images/group5_03.jpg')"><img src="images/group5_03.jpg"></div>
+        <div class="card" onclick="showCard('images/group5_04.jpg')"><img src="images/group5_04.jpg"></div>
+        <div class="card" onclick="showCard('images/group5_05.jpg')"><img src="images/group5_05.jpg"></div>
+        <div class="card" onclick="showCard('images/group5_06.jpg')"><img src="images/group5_06.jpg"></div>
+        <div class="card" onclick="showCard('images/group5_07.jpg')"><img src="images/group5_07.jpg"></div>
+        <div class="card" onclick="showCard('images/group5_08.jpg')"><img src="images/group5_08.jpg"></div>
+    </div>
+
+    <!-- ====================== 分组6 ====================== -->
+    <div class="card-group" id="group6">
+        <div class="card" onclick="showCard('images/group6_01.jpg')"><img src="images/group6_01.jpg"></div>
+        <div class="card" onclick="showCard('images/group6_02.jpg')"><img src="images/group6_02.jpg"></div>
+        <div class="card" onclick="showCard('images/group6_03.jpg')"><img src="images/group6_03.jpg"></div>
+        <div class="card" onclick="showCard('images/group6_04.jpg')"><img src="images/group6_04.jpg"></div>
+        <div class="card" onclick="showCard('images/group6_05.jpg')"><img src="images/group6_05.jpg"></div>
+        <div class="card" onclick="showCard('images/group6_06.jpg')"><img src="images/group6_06.jpg"></div>
+        <div class="card" onclick="showCard('images/group6_07.jpg')"><img src="images/group6_07.jpg"></div>
+        <div class="card" onclick="showCard('images/group6_08.jpg')"><img src="images/group6_08.jpg"></div>
+    </div>
+
+    <!-- 全屏弹窗 -->
+    <div class="modal" id="cardModal">
+        <div class="close" onclick="closeCard()">×</div>
+        <img id="showImg">
+    </div>
+
+    <script>
+        // 切换分组
+        function switchTab(num) {
+            // 隐藏所有
+            document.querySelectorAll('.card-group').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+            // 显示当前
+            document.getElementById('group'+num).classList.add('active');
+            document.querySelectorAll('.tab')[num-1].classList.add('active');
+        }
+
+        // 卡牌全屏
+        function showCard(url) {
+            document.getElementById('showImg').src = url;
+            document.getElementById('cardModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 关闭弹窗
+        function closeCard() {
+            document.getElementById('cardModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // 点击空白关闭
+        document.getElementById('cardModal').onclick = function(e) {
+            if(e.target === this) closeCard();
+        }
+    </script>
+</body>
+</html>
