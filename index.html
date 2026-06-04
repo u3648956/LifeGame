@@ -2,7 +2,6 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <!-- 手机极致优化 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>卡牌钱包</title>
     <style>
@@ -17,54 +16,48 @@
         body {
             min-height: 100vh;
             background: #f2f2f7;
-            padding: 20px 15px 120px;
-            /* 苹果风格背景 */
+            padding: 30px 15px;
         }
 
         .title {
             text-align: center;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
             margin-bottom: 30px;
             color: #1c1c1e;
         }
 
-        /* ———— 核心：iPhone 钱包 堆叠卡片效果 ———— */
+        /* 卡牌容器 */
         .card-stack {
             position: relative;
-            max-width: 350px;
+            max-width: 340px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        /* 卡牌样式：圆角+阴影+堆叠 */
+        /* 卡牌样式：打开就可见，不遮挡！ */
         .card {
             width: 100%;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             cursor: pointer;
-            position: relative;
-            margin-bottom: -180px; /* 堆叠核心代码 */
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
         }
 
-        /* 鼠标/手指按下效果 */
         .card:active {
-            transform: scale(0.98);
-        }
-
-        /* 最后一张卡牌完全显示 */
-        .card:last-child {
-            margin-bottom: 0;
+            transform: scale(0.97);
         }
 
         .card img {
             width: 100%;
             height: auto;
+            border-radius: 20px;
             display: block;
         }
 
-        /* ———— 全屏预览弹窗 ———— */
+        /* 全屏弹窗 */
         .modal {
             display: none;
             position: fixed;
@@ -82,14 +75,13 @@
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
-            touch-action: pinch-zoom; /* 双指缩放 */
+            touch-action: pinch-zoom;
         }
 
-        /* 超大关闭按钮（手机超好点） */
         .close {
             position: fixed;
-            top: 25px;
-            right: 25px;
+            top: 30px;
+            right: 30px;
             width: 60px;
             height: 60px;
             border-radius: 50%;
@@ -104,9 +96,9 @@
 </head>
 
 <body>
-    <h1 class="title">我的卡牌</h1>
+    <h1 class="title">卡牌钱包</h1>
 
-    <!-- ———— 堆叠卡牌区域（直接在这里加卡牌） ———— -->
+    <!-- 所有卡牌打开直接显示，无遮挡 -->
     <div class="card-stack">
         <div class="card" onclick="showCard('images/1.png')">
             <img src="images/card1.jpg">
@@ -129,20 +121,17 @@
     </div>
 
     <script>
-        // 点击卡牌全屏查看
         function showCard(url) {
             document.getElementById('showImg').src = url;
             document.getElementById('cardModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
 
-        // 关闭
         function closeCard() {
             document.getElementById('cardModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
-        // 点击空白处关闭
         document.getElementById('cardModal').onclick = function(e) {
             if(e.target === this) closeCard();
         }
