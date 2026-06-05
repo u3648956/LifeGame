@@ -79,6 +79,38 @@
             display: block;
         }
 
+        /* ———— tool card ———— */
+        .tool-card {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2.5/3.5; 
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+            cursor: pointer;
+        }
+        .tool-card.flip {
+            transform: rotateY(180deg);
+        }
+        .tool-front, .tool-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 20px;
+        }
+        .tool-front {
+            transform: rotateY(180deg);
+        }
+        .tool-front img, .tool-back img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -125,6 +157,7 @@
         <div class="tab" onclick="switchTab(4)">情境 4</div>
         <div class="tab" onclick="switchTab(5)">情境 5</div>
         <div class="tab" onclick="switchTab(6)">情境 6</div>
+        <div class="tab" onclick="switchTab(7)">工具卡</div>
     </div>
 
     <!-- ====================== 分组1（默认显示） ====================== -->
@@ -199,6 +232,42 @@
         <div class="card" onclick="showCard('images/group6_08.jpg')"><img src="images/group6_08.jpg"></div>
     </div>
 
+    <!-- ====================== 工具卡（平铺 + 单击翻面） ====================== -->
+    <div class="card-group" id="group7">
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool01.jpg')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/1.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool02.jpg')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/1.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool03.jpg')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/1.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool04.jpg')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/tool04.jpg"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool05.jpg')">
+            <div class="tool-back"><img src="images/tool_back.jpg"></div>
+            <div class="tool-front"><img src="images/tool05.jpg"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool06.jpg')">
+            <div class="tool-back"><img src="images/tool_back.jpg"></div>
+            <div class="tool-front"><img src="images/tool06.jpg"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool07.jpg')">
+            <div class="tool-back"><img src="images/tool_back.jpg"></div>
+            <div class="tool-front"><img src="images/tool07.jpg"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool08.jpg')">
+            <div class="tool-back"><img src="images/tool_back.jpg"></div>
+            <div class="tool-front"><img src="images/tool08.jpg"></div>
+        </div>
+    </div>
+
     <!-- 全屏弹窗 -->
     <div class="modal" id="cardModal">
         <div class="close" onclick="closeCard()">×</div>
@@ -216,7 +285,11 @@
             document.querySelectorAll('.tab')[num-1].classList.add('active');
         }
 
-        // 卡牌全屏
+        // 工具卡翻面
+        function flipCard(el) {
+            el.classList.toggle('flip');
+        }
+
         function showCard(url) {
             document.getElementById('showImg').src = url;
             document.getElementById('cardModal').style.display = 'flex';
