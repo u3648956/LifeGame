@@ -19,12 +19,60 @@
             padding: 20px 10px;
         }
 
+        /* ———— 新增：首页卡组选择界面（默认显示） ———— */
+        .home {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 80vh;
+            justify-content: center;
+            gap: 30px;
+        }
+        .home-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1c1c1e;
+        }
+        /* 彩色按钮网格布局 */
+        .btn-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 100%;
+            max-width: 380px;
+        }
+        /* 8种渐变彩色按钮（超好看！） */
+        .nav-btn {
+            padding: 22px 10px;
+            border: none;
+            border-radius: 18px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .nav-btn:active { transform: scale(0.95); }
+		.btn1 { background: linear-gradient(135deg, #c56b4d, #e5ab78); }
+        .btn2 { background: linear-gradient(135deg, #708467, #a8b89d); }
+        .btn3 { background: linear-gradient(135deg, #647fb8, #a4bedf); }
+        .btn4 { background: linear-gradient(135deg, #7c6a9e, #b8add2); }
+        .btn5 { background: linear-gradient(135deg, #c76887, #e6afbf); }
+        .btn6 { background: linear-gradient(135deg, #96535d, #c99199); }
+        .btn7 { background: linear-gradient(135deg, #d49543, #e5c766); }
+
+        /* 主内容区（默认隐藏，点击按钮显示） */
+        .main-content {
+            display: none;
+        }
         .title {
             text-align: center;
             font-size: 24px;
             font-weight: bold;
             margin: 10px 0 20px;
             color: #1c1c1e;
+            cursor: pointer; /* 点击标题返回首页 */
         }
 
         /* grouplabel */
@@ -181,9 +229,23 @@
 </head>
 
 <body>
-    <h1 class="title">Cards</h1>
+    <!-- ———— 首页：彩色卡组选择按钮 ———— -->
+    <div class="home" id="homePage">
+        <h1 class="home-title">Life Game Cards</h1>
+        <div class="btn-grid">
+            <button class="nav-btn btn1" onclick="goToGroup(1)">情境 1</button>
+            <button class="nav-btn btn2" onclick="goToGroup(2)">情境 2</button>
+            <button class="nav-btn btn3" onclick="goToGroup(3)">情境 3</button>
+            <button class="nav-btn btn4" onclick="goToGroup(4)">情境 4</button>
+            <button class="nav-btn btn5" onclick="goToGroup(5)">情境 5</button>
+            <button class="nav-btn btn6" onclick="goToGroup(6)">情境 6</button>
+            <button class="nav-btn btn7" onclick="goToGroup(7)">價值卡</button>
+        </div>
+    </div>
 
     <!-- 6个分组标签 -->
+    <div class="main-content" id="mainContent">
+        <h1 class="title" onclick="backHome()">Life Game Cards</h1>
     <div class="tab-bar">
         <div class="tab active" onclick="switchTab(1)">情境 1</div>
         <div class="tab" onclick="switchTab(2)">情境 2</div>
@@ -197,13 +259,13 @@
     <!-- ====================== Group （default display) ====================== -->
     <div class="card-group active" id="group1">
         <div class="card" onclick="showCard('images/1.png')"><img src="images/1.png"></div>
-		<div class="blank-card">
-            <img src="images/blank_card.png">
-			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/2.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/2.png"></div>
         </div>
-		<div class="blank-card">
-            <img src="images/blank_card.png">
-			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/3.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/3.png"></div>
         </div>
         <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/4.png')">
             <div class="tool-back"><img src="images/tool_back.png"></div>
@@ -211,31 +273,15 @@
         </div>
         <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/5.png')">
             <div class="tool-back"><img src="images/tool_back.png"></div>
-            <div class="tool-front"><img src="images/4.png"></div>
+            <div class="tool-front"><img src="images/5.png"></div>
         </div>
         <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/6.png')">
             <div class="tool-back"><img src="images/tool_back.png"></div>
-            <div class="tool-front"><img src="images/4.png"></div>
-        </div>
-        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/7.png')">
-            <div class="tool-back"><img src="images/tool_back.png"></div>
-            <div class="tool-front"><img src="images/4.png"></div>
-        </div>
-        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/8.png')">
-            <div class="tool-back"><img src="images/tool_back.png"></div>
-            <div class="tool-front"><img src="images/4.png"></div>
+            <div class="tool-front"><img src="images/6.png"></div>
         </div>
     </div>
     <div class="card-group" id="group2">
         <div class="card" onclick="showCard('images/1.png')"><img src="images/1.png"></div>
-		<div class="blank-card">
-            <img src="images/blank_card.png">
-			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
-        </div>
-		<div class="blank-card">
-            <img src="images/blank_card.png">
-			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
-        </div>
         <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/4.png')">
             <div class="tool-back"><img src="images/tool_back.png"></div>
             <div class="tool-front"><img src="images/4.png"></div>
@@ -259,14 +305,6 @@
     </div>
     <div class="card-group" id="group3">
         <div class="card" onclick="showCard('images/1.png')"><img src="images/1.png"></div>
-		<div class="blank-card">
-            <img src="images/blank_card.png">
-			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
-        </div>
-		<div class="blank-card">
-            <img src="images/blank_card.png">
-			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
-        </div>
         <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/4.png')">
             <div class="tool-back"><img src="images/tool_back.png"></div>
             <div class="tool-front"><img src="images/4.png"></div>
@@ -290,14 +328,6 @@
     </div>
     <div class="card-group" id="group4">
         <div class="card" onclick="showCard('images/1.png')"><img src="images/1.png"></div>
-		<div class="blank-card">
-            <img src="images/blank_card.png">
-			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
-        </div>
-		<div class="blank-card">
-            <img src="images/blank_card.png">
-			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
-        </div>
         <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/4.png')">
             <div class="tool-back"><img src="images/tool_back.png"></div>
             <div class="tool-front"><img src="images/4.png"></div>
@@ -321,14 +351,6 @@
     </div>
     <div class="card-group" id="group5">
         <div class="card" onclick="showCard('images/1.png')"><img src="images/1.png"></div>
-		<div class="blank-card">
-            <img src="images/blank_card.png">
-			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
-        </div>
-		<div class="blank-card">
-            <img src="images/blank_card.png">
-			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
-        </div>
         <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/4.png')">
             <div class="tool-back"><img src="images/tool_back.png"></div>
             <div class="tool-front"><img src="images/4.png"></div>
@@ -352,14 +374,6 @@
     </div>
     <div class="card-group" id="group6">
         <div class="card" onclick="showCard('images/1.png')"><img src="images/1.png"></div>
-		<div class="blank-card">
-            <img src="images/blank_card.png">
-			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
-        </div>
-		<div class="blank-card">
-            <img src="images/blank_card.png">
-			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
-        </div>
         <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/4.png')">
             <div class="tool-back"><img src="images/tool_back.png"></div>
             <div class="tool-front"><img src="images/4.png"></div>
@@ -382,7 +396,15 @@
         </div>
     </div>
     <div class="card-group" id="group7">
-        <div class="card" onclick="showCard('images/group6_01.jpg')"><img src="images/group6_01.jpg"></div>
+        <div class="blank-card">
+            <img src="images/blank_card.png">
+			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        </div>
+		<div class="blank-card">
+            <img src="images/blank_card.png">
+			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        </div>
+		<div class="card" onclick="showCard('images/group6_01.jpg')"><img src="images/group6_01.jpg"></div>
         <div class="card" onclick="showCard('images/group6_02.jpg')"><img src="images/group6_02.jpg"></div>
         <div class="card" onclick="showCard('images/group6_03.jpg')"><img src="images/group6_03.jpg"></div>
         <div class="card" onclick="showCard('images/group6_04.jpg')"><img src="images/group6_04.jpg"></div>
@@ -399,6 +421,17 @@
     </div>
 
     <script>
+        // ———— Home page jump + return ————
+        function goToGroup(num) {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            switchTab(num);
+        }
+        function backHome() {
+            document.getElementById('homePage').style.display = 'flex';
+            document.getElementById('mainContent').style.display = 'none';
+        }
+
         // 切换分组
         function switchTab(num) {
             // 隐藏所有
