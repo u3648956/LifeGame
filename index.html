@@ -27,7 +27,7 @@
             color: #1c1c1e;
         }
 
-        /* 分组标签栏（手机横向滑动） */
+        /* grouplabel */
         .tab-bar {
             display: flex;
             overflow-x: auto;
@@ -111,6 +111,40 @@
             border-radius: 20px;
         }
 
+        /* ———— BLANK CARD ———— */
+        .blank-card {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2.5/3.5;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .blank-card img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .blank-input {
+            position: absolute;
+            left: 2%;
+            bottom: 0;
+            width: 100%;
+            height: 45%; 
+            padding: 20px;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #000;
+            resize: none;
+            user-select: text;
+            font-family: system-ui;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -157,71 +191,197 @@
         <div class="tab" onclick="switchTab(4)">情境 4</div>
         <div class="tab" onclick="switchTab(5)">情境 5</div>
         <div class="tab" onclick="switchTab(6)">情境 6</div>
-        <div class="tab" onclick="switchTab(7)">工具卡</div>
+        <div class="tab" onclick="switchTab(7)">價值卡</div>
     </div>
 
-    <!-- ====================== 分组1（默认显示） ====================== -->
+    <!-- ====================== Group （default display) ====================== -->
     <div class="card-group active" id="group1">
         <div class="card" onclick="showCard('images/1.png')"><img src="images/1.png"></div>
-        <div class="card" onclick="showCard('images/2.png')"><img src="images/2.png"></div>
-        <div class="card" onclick="showCard('images/3.png')"><img src="images/3.png"></div>
-        <div class="card" onclick="showCard('images/4.png')"><img src="images/4.png"></div>
-        <div class="card" onclick="showCard('images/group1_05.jpg')"><img src="images/group1_05.jpg"></div>
-        <div class="card" onclick="showCard('images/group1_06.jpg')"><img src="images/group1_06.jpg"></div>
-        <div class="card" onclick="showCard('images/group1_07.jpg')"><img src="images/group1_07.jpg"></div>
-        <div class="card" onclick="showCard('images/group1_08.jpg')"><img src="images/group1_08.jpg"></div>
+		<div class="blank-card">
+            <img src="images/blank_card.png">
+			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        </div>
+		<div class="blank-card">
+            <img src="images/blank_card.png">
+			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/4.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/5.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/6.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/7.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/8.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
     </div>
-
-    <!-- ====================== 分组2 ====================== -->
     <div class="card-group" id="group2">
-        <div class="card" onclick="showCard('images/group2_01.jpg')"><img src="images/group2_01.jpg"></div>
-        <div class="card" onclick="showCard('images/group2_02.jpg')"><img src="images/group2_02.jpg"></div>
-        <div class="card" onclick="showCard('images/group2_03.jpg')"><img src="images/group2_03.jpg"></div>
-        <div class="card" onclick="showCard('images/group2_04.jpg')"><img src="images/group2_04.jpg"></div>
-        <div class="card" onclick="showCard('images/group2_05.jpg')"><img src="images/group2_05.jpg"></div>
-        <div class="card" onclick="showCard('images/group2_06.jpg')"><img src="images/group2_06.jpg"></div>
-        <div class="card" onclick="showCard('images/group2_07.jpg')"><img src="images/group2_07.jpg"></div>
-        <div class="card" onclick="showCard('images/group2_08.jpg')"><img src="images/group2_08.jpg"></div>
+        <div class="card" onclick="showCard('images/1.png')"><img src="images/1.png"></div>
+		<div class="blank-card">
+            <img src="images/blank_card.png">
+			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        </div>
+		<div class="blank-card">
+            <img src="images/blank_card.png">
+			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/4.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/5.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/6.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/7.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/8.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
     </div>
-
-    <!-- ====================== 分组3 ====================== -->
     <div class="card-group" id="group3">
-        <div class="card" onclick="showCard('images/group3_01.jpg')"><img src="images/group3_01.jpg"></div>
-        <div class="card" onclick="showCard('images/group3_02.jpg')"><img src="images/group3_02.jpg"></div>
-        <div class="card" onclick="showCard('images/group3_03.jpg')"><img src="images/group3_03.jpg"></div>
-        <div class="card" onclick="showCard('images/group3_04.jpg')"><img src="images/group3_04.jpg"></div>
-        <div class="card" onclick="showCard('images/group3_05.jpg')"><img src="images/group3_05.jpg"></div>
-        <div class="card" onclick="showCard('images/group3_06.jpg')"><img src="images/group3_06.jpg"></div>
-        <div class="card" onclick="showCard('images/group3_07.jpg')"><img src="images/group3_07.jpg"></div>
-        <div class="card" onclick="showCard('images/group3_08.jpg')"><img src="images/group3_08.jpg"></div>
+        <div class="card" onclick="showCard('images/1.png')"><img src="images/1.png"></div>
+		<div class="blank-card">
+            <img src="images/blank_card.png">
+			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        </div>
+		<div class="blank-card">
+            <img src="images/blank_card.png">
+			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/4.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/5.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/6.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/7.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/8.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
     </div>
-
-    <!-- ====================== 分组4 ====================== -->
     <div class="card-group" id="group4">
-        <div class="card" onclick="showCard('images/group4_01.jpg')"><img src="images/group4_01.jpg"></div>
-        <div class="card" onclick="showCard('images/group4_02.jpg')"><img src="images/group4_02.jpg"></div>
-        <div class="card" onclick="showCard('images/group4_03.jpg')"><img src="images/group4_03.jpg"></div>
-        <div class="card" onclick="showCard('images/group4_04.jpg')"><img src="images/group4_04.jpg"></div>
-        <div class="card" onclick="showCard('images/group4_05.jpg')"><img src="images/group4_05.jpg"></div>
-        <div class="card" onclick="showCard('images/group4_06.jpg')"><img src="images/group4_06.jpg"></div>
-        <div class="card" onclick="showCard('images/group4_07.jpg')"><img src="images/group4_07.jpg"></div>
-        <div class="card" onclick="showCard('images/group4_08.jpg')"><img src="images/group4_08.jpg"></div>
+        <div class="card" onclick="showCard('images/1.png')"><img src="images/1.png"></div>
+		<div class="blank-card">
+            <img src="images/blank_card.png">
+			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        </div>
+		<div class="blank-card">
+            <img src="images/blank_card.png">
+			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/4.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/5.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/6.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/7.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/8.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
     </div>
-
-    <!-- ====================== 分组5 ====================== -->
     <div class="card-group" id="group5">
-        <div class="card" onclick="showCard('images/group5_01.jpg')"><img src="images/group5_01.jpg"></div>
-        <div class="card" onclick="showCard('images/group5_02.jpg')"><img src="images/group5_02.jpg"></div>
-        <div class="card" onclick="showCard('images/group5_03.jpg')"><img src="images/group5_03.jpg"></div>
-        <div class="card" onclick="showCard('images/group5_04.jpg')"><img src="images/group5_04.jpg"></div>
-        <div class="card" onclick="showCard('images/group5_05.jpg')"><img src="images/group5_05.jpg"></div>
-        <div class="card" onclick="showCard('images/group5_06.jpg')"><img src="images/group5_06.jpg"></div>
-        <div class="card" onclick="showCard('images/group5_07.jpg')"><img src="images/group5_07.jpg"></div>
-        <div class="card" onclick="showCard('images/group5_08.jpg')"><img src="images/group5_08.jpg"></div>
+        <div class="card" onclick="showCard('images/1.png')"><img src="images/1.png"></div>
+		<div class="blank-card">
+            <img src="images/blank_card.png">
+			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        </div>
+		<div class="blank-card">
+            <img src="images/blank_card.png">
+			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/4.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/5.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/6.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/7.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/8.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
     </div>
-
-    <!-- ====================== 分组6 ====================== -->
     <div class="card-group" id="group6">
+        <div class="card" onclick="showCard('images/1.png')"><img src="images/1.png"></div>
+		<div class="blank-card">
+            <img src="images/blank_card.png">
+			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        </div>
+		<div class="blank-card">
+            <img src="images/blank_card.png">
+			<textarea class="blank-input" id="blankInput" placeholder="Please fill in the following content. The word limit is 200 characters." oninput="saveTempText()" maxlength="200"></textarea>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/4.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/5.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/6.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/7.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/8.png')">
+            <div class="tool-back"><img src="images/tool_back.png"></div>
+            <div class="tool-front"><img src="images/4.png"></div>
+        </div>
+    </div>
+    <div class="card-group" id="group7">
         <div class="card" onclick="showCard('images/group6_01.jpg')"><img src="images/group6_01.jpg"></div>
         <div class="card" onclick="showCard('images/group6_02.jpg')"><img src="images/group6_02.jpg"></div>
         <div class="card" onclick="showCard('images/group6_03.jpg')"><img src="images/group6_03.jpg"></div>
@@ -230,42 +390,6 @@
         <div class="card" onclick="showCard('images/group6_06.jpg')"><img src="images/group6_06.jpg"></div>
         <div class="card" onclick="showCard('images/group6_07.jpg')"><img src="images/group6_07.jpg"></div>
         <div class="card" onclick="showCard('images/group6_08.jpg')"><img src="images/group6_08.jpg"></div>
-    </div>
-
-    <!-- ====================== 工具卡（平铺 + 单击翻面） ====================== -->
-    <div class="card-group" id="group7">
-        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool01.jpg')">
-            <div class="tool-back"><img src="images/tool_back.png"></div>
-            <div class="tool-front"><img src="images/1.png"></div>
-        </div>
-        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool02.jpg')">
-            <div class="tool-back"><img src="images/tool_back.png"></div>
-            <div class="tool-front"><img src="images/1.png"></div>
-        </div>
-        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool03.jpg')">
-            <div class="tool-back"><img src="images/tool_back.png"></div>
-            <div class="tool-front"><img src="images/1.png"></div>
-        </div>
-        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool04.jpg')">
-            <div class="tool-back"><img src="images/tool_back.png"></div>
-            <div class="tool-front"><img src="images/tool04.jpg"></div>
-        </div>
-        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool05.jpg')">
-            <div class="tool-back"><img src="images/tool_back.jpg"></div>
-            <div class="tool-front"><img src="images/tool05.jpg"></div>
-        </div>
-        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool06.jpg')">
-            <div class="tool-back"><img src="images/tool_back.jpg"></div>
-            <div class="tool-front"><img src="images/tool06.jpg"></div>
-        </div>
-        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool07.jpg')">
-            <div class="tool-back"><img src="images/tool_back.jpg"></div>
-            <div class="tool-front"><img src="images/tool07.jpg"></div>
-        </div>
-        <div class="tool-card" onclick="flipCard(this)" ondblclick="showCard('images/tool08.jpg')">
-            <div class="tool-back"><img src="images/tool_back.jpg"></div>
-            <div class="tool-front"><img src="images/tool08.jpg"></div>
-        </div>
     </div>
 
     <!-- 全屏弹窗 -->
@@ -305,6 +429,18 @@
         // 点击空白关闭
         document.getElementById('cardModal').onclick = function(e) {
             if(e.target === this) closeCard();
+        }
+
+        // 空白卡临时保存
+        function saveTempText() {
+            let text = document.getElementById('blankInput').value;
+            localStorage.setItem('cardTempText', text);
+        }
+        window.onload = function() {
+            let tempText = localStorage.getItem('cardTempText');
+            if(tempText) {
+                document.getElementById('blankInput').value = tempText;
+            }
         }
     </script>
 </body>
